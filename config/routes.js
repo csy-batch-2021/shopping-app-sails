@@ -26,6 +26,9 @@ module.exports.routes = {
   "get /orders": { view: "pages/orders" },
   "get /myorders": { view: "pages/myorders" },
 
+  //REST API
+  //"post /api/login": { controller: "UserController", action: "login" },
+
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *
