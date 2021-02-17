@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="node_modules/shoppingapp/ProductApi.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+
+    <h3>List Products</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Product Name</th>
+                <th>Brand Name</th>
+                <th>RAM</th>
+                <th>Rating</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="products-tbl">
+
+        </tbody>
+
+
+    </table>
+    <script>
+        function loadProducts() {
+            // const productSearchAPI = new ProductSearchAPI();
+            // let url = "https://shopping-app-rest-api.herokuapp.com/activeproducts";
+
+            // let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            // let userId = loggedInUser.id;
+            let userId = 1;
+            let url = "http://localhost:3000/getAllProducts";
+
+            axios.get(url).then(response => {
+                console.table(response.data);
+                displayProducts(response.data);
+            });
+        }
+
+
+        //Display the product details  in a table
+        function displayProducts(products) {
+
+            const tbody = document.querySelector("#products-tbl");
+            tbody.innerHTML = "";
+            let content = "";
+            let i = 1;
+
+            console.log("products", products.length);
+            if (products.length != 0) {
+                for (let p of products) {
+
+                    let temp = ` <tr>
+    <td>${i}</td>
+    <td>${p.name}</td>
+    <td>${p.brand_name}</td>
+    <td>${p.ram}</td>
+    <td>${p.rating}</td>
+    <td>${p.price}</td>
+</tr>`;
+
+                    content += temp;
+                    i++;
+                }
+            }
+            else {
+                content = "No Records Found"
+            }
+            // console.log(content);
+            tbody.innerHTML = content;
+
+            //Assign Listeners
+            document.querySelectorAll("#order-btn1").forEach(element => {
+                let productId = parseInt(element.getAttribute("data-product-id"));
+                console.log(productId);
+                element.addEventListener('click', e => {
+                    placeOrder(productId);
+                });
+            });
+
+        }
+        function cancelOrder(orderId) {
+
+            console.log(orderId);
+
+            let url = "http://localhost:3000/cancelOrder?orderId=" + orderId;
+
+            axios.patch(url, null).then(response => {
+                // productOrderAPI.orderProduct(orderObj).then(response => {
+                console.log(response.data);
+                document.getElementById("errorMessage").innerHTML = response.data;
+                // window.location.href = "orders.html";
+
+            }).catch(err => {
+                // console.error("Erroro", );   
+
+                document.getElementById("errorMessage").innerHTML = err.response.data.message;
+            });
+
+        }
+
+
+
+        loadProducts();
+
+
+    </script>
+</body>
+
+</html>
