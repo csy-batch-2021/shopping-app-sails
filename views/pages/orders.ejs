@@ -43,7 +43,7 @@
             // let userId = 1;
             // let url = "http://localhost:3000/orders";
 
-            let url = "https://shopping-app-rest-api.herokuapp.com/orders";
+            let url = "https://shopping-app-rest-api.herokuapp.com/api/orders";
             axios.get(url).then(response => {
                 // console.table(response.data);
                 displayProducts(response.data);
@@ -111,7 +111,7 @@
                 console.log("userDetails", userDetails);
 
                 // let url = "http://localhost:3000/changeorderstatus";
-                let url = "https://shopping-app-rest-api.herokuapp.com/changeorderstatus";
+                let url = "https://shopping-app-rest-api.herokuapp.com/api/changeorderstatus";
 
                 axios.post(url, userDetails).then(response => {
                     // productOrderAPI.orderProduct(orderObj).then(response => {
@@ -136,7 +136,7 @@
             // confirm("Are you sure you want to save this thing into the database?");
             if (confirm('Are you sure you want to save this thing into the database?')) {
                 // let url = "http://localhost:3000/cancelOrder";
-                let url = "https://shopping-app-rest-api.herokuapp.com/cancelOrder";
+                let url = "https://shopping-app-rest-api.herokuapp.com/api/cancelOrder";
                 let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
                 let userId = loggedInUser.id;
                 let cancelOrderDetails = { userId: userId, orderId: id }
