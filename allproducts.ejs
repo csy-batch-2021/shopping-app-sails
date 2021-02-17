@@ -39,8 +39,9 @@
             // let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             // let userId = loggedInUser.id;
             let userId = 1;
-            let url = "http://localhost:3000/getAllProducts";
+            // let url = "http://localhost:3000/getAllProducts";
 
+            let url = "https://shopping-app-rest-api.herokuapp.com/getAllProducts";
             axios.get(url).then(response => {
                 console.table(response.data);
                 displayProducts(response.data);
@@ -89,25 +90,28 @@
             });
 
         }
-        function cancelOrder(orderId) {
 
-            console.log(orderId);
+        // function cancelOrder(orderId) {
 
-            let url = "http://localhost:3000/cancelOrder?orderId=" + orderId;
+        //     console.log(orderId);
 
-            axios.patch(url, null).then(response => {
-                // productOrderAPI.orderProduct(orderObj).then(response => {
-                console.log(response.data);
-                document.getElementById("errorMessage").innerHTML = response.data;
-                // window.location.href = "orders.html";
+        //     // let url = "http://localhost:3000/cancelOrder?orderId=" + orderId;
+        //     let url = "https://shopping-app-rest-api.herokuapp.com/cancelOrder?orderId=" + orderId;
 
-            }).catch(err => {
-                // console.error("Erroro", );   
 
-                document.getElementById("errorMessage").innerHTML = err.response.data.message;
-            });
+        //     axios.patch(url, null).then(response => {
+        //         // productOrderAPI.orderProduct(orderObj).then(response => {
+        //         console.log(response.data);
+        //         document.getElementById("errorMessage").innerHTML = response.data;
+        //         // window.location.href = "orders.html";
 
-        }
+        //     }).catch(err => {
+        //         // console.error("Erroro", );   
+
+        //         document.getElementById("errorMessage").innerHTML = err.response.data.message;
+        //     });
+
+        // }
 
 
 
