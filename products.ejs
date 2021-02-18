@@ -101,8 +101,8 @@
             let orderObj = { productId: productId, qty: 1, userId: userId };
             console.log(orderObj);
             // const productOrderAPI = new ProductOrderAPI();
-            let url = "http://localhost:3000/addOrder";
-
+            // let url = "http://localhost:3000/addOrder";
+            let url = "https://shopping-app-rest-api.herokuapp.com/addOrder";
             axios.post(url, orderObj).then(response => {
                 // productOrderAPI.orderProduct(orderObj).then(response => {
                 console.log(response.data);
@@ -120,8 +120,8 @@
         function loadProducts() {
             // const productSearchAPI = new ProductSearchAPI();
             // let url = "https://shopping-app-rest-api.herokuapp.com/activeproducts";
-            let url = "http://localhost:3000/activeproducts";
-
+            // let url = "http://localhost:3000/activeproducts";
+            let url = "https://shopping-app-rest-api.herokuapp.com/activeproducts";
             axios.get(url).then(response => {
                 // console.table(response.data);
                 displayProducts(response.data);
@@ -132,8 +132,8 @@
 
             console.log("filterObj", filterObj);
             // const productSearchAPI = new ProductSearchAPI();
-            let url = "http://localhost:3000/searchProducts";
-
+            // let url = "http://localhost:3000/searchProducts";
+            let url = "https://shopping-app-rest-api.herokuapp.com/searchProducts";
             // productSearchAPI.searchProducts(filterObj).then(response => {
             //     console.table(response);
             //     displayProducts(response);
