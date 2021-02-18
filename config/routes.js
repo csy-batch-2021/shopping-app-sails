@@ -29,7 +29,7 @@ module.exports.routes = {
   //REST API
   //"get /api/login": { controller: "UserController", action: "login" },
   "post /api/login": { action: "user/login" },
-  "get /api/register": { action: "user/register" },
+  "post /api/register": { action: "user/register" },
 
   /***************************************************************************
    *                                                                          *
