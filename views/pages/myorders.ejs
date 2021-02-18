@@ -74,16 +74,21 @@
         <td>${i}</td>
         <td>${p.user_name}</td>
         <td>${p.name}</td>
-        <td>${p.price}</td>        
+        <td>Rs${p.price}</td>        
         <td>${p.qty}</td>
-        <td>${p.total_amount}</td>
+        <td>Rs${p.total_amount}</td>
         <td>${p.status}</td>
         <td>${p.created_date}</td>        
-        <td>${p.modified_date}</td>        
+        <td>${p.modified_date}</td>     <td>  `
 
-        
-        <td><button type="button"  id="order-btn1" data-product-id=${p.id}>Cancel</button>
-    </tr>`;
+                    if (p.status == "ORDERED") {
+                        temp = temp +
+
+                            `<button type="button"  id="order-btn1" data-product-id=${p.id}>Cancel</button>`;
+                    }
+
+
+                    temp = temp + `</td> </tr>`;
 
                     content += temp;
                     i++;
@@ -111,7 +116,7 @@
 
                 // console.log("Cancel order id", id);
                 // confirm("Are you sure you want to save this thing into the database?");
-                if (confirm('Are you sure you want to save this thing into the database?')) {
+                if (confirm('Do you want to cancel this order?')) {
                     // let url = "http://localhost:3000/cancelOrder";
                     let url = "https://shopping-app-rest-api.herokuapp.com/api/cancelOrder";
                     let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));

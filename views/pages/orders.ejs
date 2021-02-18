@@ -70,9 +70,9 @@
         <td>${i}</td>
         <td>${p.user_name}</td>
         <td>${p.name}</td>
-        <td>${p.price}</td>        
+        <td>Rs${p.price}</td>        
         <td>${p.qty}</td>
-        <td>${p.total_amount}</td>
+        <td>Rs${p.total_amount}</td>
         <td>${p.status}</td>
         <td>${p.created_date}</td>        
         <td>${p.modified_date}</td> 
@@ -119,6 +119,7 @@
                 axios.post(url, userDetails).then(response => {
                     // productOrderAPI.orderProduct(orderObj).then(response => {
                     console.log(response.data);
+                    toastr.success("Order Added Successfully");
                     document.getElementById("errorMessage").innerHTML = err.response.data.message;
                     // window.location.href = "orders.html";
 
