@@ -1,0 +1,75 @@
+<h1>Create New Products</h1>
+<div id="message"></div>
+<br>
+<form>
+    <label class="name">Name</label>
+    <input type="user_name" id="name" placeholder="Enter Name" required>
+    <br>
+    <br>
+    <label class="email">Brand Name</label>
+    <input type="email" id="brandName" placeholder="Enter Brand Name" required>
+    <br>
+    <br>
+    <label>Ram</label>
+    <input type="text" id="ram" placeholder="Enter Ram" required>
+    <br>
+    <br>
+
+    <label>Price</label>
+    <input type="text" id="price" placeholder="Enter Price" required>
+    <br>
+    <br>
+    <br>
+    <button id="submitBtn"> Submit </button>
+</form>
+
+<script>
+
+    function productAdd(productDetails) {
+
+        console.log("productAdd", productDetails)
+
+        let url = "https://shopping-app-rest-api.herokuapp.com/api/addNewProducts";
+        // let url = "http://localhost:3000/addUser";
+        // let userDetails = { name: user_name, email: email, password: password };
+
+        // let url = "https://shopping-app-rest-api.herokuapp.com/api/addUser";
+        // // let url = "http://localhost:3000/addUser";
+
+        axios.post(url, productDetails).then(response => {
+            let registerData = response;
+            console.log(registerData);
+            document.querySelector("#message").innerHTML = "User Added Successfully";
+            // if (registerData) {
+
+                window.location.href = "allproducts";
+            // }
+            // else {
+            //     window.location.href = "register";
+            // }
+        }).catch(err => {
+            let error = err.response.data.message;
+            console.error(error);
+            document.querySelector("#message").innerHTML = error;
+        })
+
+    }
+    function productSubmit() {
+        let name = document.querySelector("#name").value;
+        let brandName = document.querySelector("#brandName").value;
+        let ram = document.querySelector("#ram").value;
+        let price = document.querySelector("#price").value;
+        // let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+        // let userId = loggedInUser.id;
+        let userId = 1;
+        let productDetails = { name: name, brandName: brandName, ram: ram, price: price, userId: userId }
+        productAdd(productDetails);
+        // console.log("product details", productDetails);
+    }
+
+    document.querySelector("#submitBtn").addEventListener('click', event => {
+        event.preventDefault();
+        productSubmit();
+    })
+
+</script>
