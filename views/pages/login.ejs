@@ -22,11 +22,11 @@
         padding: 10px;
     }
 
-    div {
+    /* div {
         text-align: center;
         margin-left: 20px;
         color: red;
-    }
+    } */
 
     /* body {
         background-image: url("https://image.freepik.com/free-photo/shopping-cart-yellow-background-minimalism-style-shop-trolley-supermarket-sale-discount-shopaholism-concept-consumer-society-trend_80743-2181.jpg");
@@ -47,6 +47,11 @@
         <input type="password" id="password" placeholder="Enter Password" required>
         <br>
         <br>
+        <select name="role" id="role">
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+        </select>
+        <br>
         <br>
         <button id="submitBtn"> Submit </button>
     </form>
@@ -54,18 +59,20 @@
     <script>
 
 
-        function login(email, password) {
-            let user = { email: email, password: password };
+        function login(email, password, role) {
+            let user = { email: email, password: password, role: role };
 
-            let url = "https://shopping-app-rest-api.herokuapp.com/api/userLogin";
+            // let url = "https://shopping-app-rest-api.herokuapp.com/api/userLogin";
             //let url = "/api/login"
-            // let url = "http://localhost:3000/userLogin";
+            let url = "http://localhost:3000/api/userLogin";
 
             axios.post(url, user).then(response => {
                 let userData = response.data;
                 localStorage.setItem("LOGGED_IN_USER", JSON.stringify(userData));
                 document.querySelector("#message").innerHTML = "Successfully LoggedIn";
-                if (response.role == "ADMIN") {
+                toastr.success("Successfully LoggedIn");
+                // console.log(response.role);
+                if (userData.role == "ADMIN") {
 
                     window.location.href = "orders";
                 }
@@ -77,13 +84,15 @@
                 let error = err.response.data.message;
                 console.error(error);
                 document.querySelector("#message").innerHTML = error;
+                toastr.error(error);
             });
         }
 
         function loginSubmit() {
             let email = document.querySelector("#email").value;
             let password = document.querySelector("#password").value;
-            login(email, password);
+            let role = document.querySelector("#role").value;
+            login(email, password, role);
         }
 
         document.querySelector("#submitBtn").addEventListener('click', event => {

@@ -17,11 +17,11 @@
         text-align: center;
     }
 
-    div {
+    /* div {
         text-align: center;
         margin-left: 20px;
         color: red;
-    }
+    } */
 
     label.email,
     label.name {
@@ -56,15 +56,16 @@
         function register(user_name, email, password) {
             let userDetails = { name: user_name, email: email, password: password };
 
-            let url = "https://shopping-app-rest-api.herokuapp.com/api/addUser";
-            // let url = "http://localhost:3000/addUser";
+            // let url = "https://shopping-app-rest-api.herokuapp.com/api/addUser";
+            let url = "http://localhost:3000/api/addUser";
 
             axios.post(url, userDetails).then(response => {
                 let registerData = response;
                 console.log(registerData);
                 document.querySelector("#message").innerHTML = "User Added Successfully";
+                toastr.success("Successfully LoggedIn");
                 if (registerData) {
-
+                   console.log(registerData,"ss")
                     window.location.href = "login";
                 }
                 else {
@@ -74,6 +75,7 @@
                 let error = err.response.data.message;
                 console.error(error);
                 document.querySelector("#message").innerHTML = error;
+                toastr.error(error);
             })
 
         }
