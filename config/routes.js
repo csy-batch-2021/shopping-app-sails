@@ -21,11 +21,12 @@ module.exports.routes = {
   "/": { view: "pages/homepage" },
   "get /login": { view: "pages/login" },
   "get /register": { view: "pages/register" },
+  "get /adminRegister": { view: "pages/adminRegister" },
   "get /allproducts": { view: "pages/allproducts" },
   "get /products": { view: "pages/products" },
   "get /orders": { view: "pages/orders" },
   "get /myorders": { view: "pages/myorders" },
-   "get /addProducts": { view: "pages/addProducts" },
+  "get /addProducts": { view: "pages/addProducts" },
 
 
   //REST API
