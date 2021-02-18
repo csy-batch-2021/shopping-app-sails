@@ -23,7 +23,7 @@
                 <th>RAM</th>
                 <th>Rating</th>
                 <th>Price</th>
-                <th>Action</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody id="products-tbl">
@@ -68,7 +68,9 @@
     <td>${p.brand_name}</td>
     <td>${p.ram}</td>
     <td>${p.rating != null ? p.rating : ""}</td>
-    <td>Rs.Rs${p.price}</td>
+    <td>Rs.${p.price}</td>
+    <td>${p.active}</td>
+    
 </tr>`;
 
                     content += temp;
