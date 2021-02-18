@@ -19,13 +19,16 @@
         <thead>
             <tr>
                 <th>Sno</th>
-                <th>Date</th>                
                 <th>User</th>
                 <th>Product</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
                 <th>Status</th>
+                <th>Ordered On</th>
+                <th>Last Modified On</th>
+
+
                 <th>Action</th>
             </tr>
         </thead>
@@ -69,13 +72,15 @@
 
                     let temp = ` <tr>
         <td>${i}</td>
-        <td>${p.created_date}</td>        
         <td>${p.user_name}</td>
         <td>${p.name}</td>
         <td>${p.price}</td>        
         <td>${p.qty}</td>
         <td>${p.total_amount}</td>
         <td>${p.status}</td>
+        <td>${p.created_date}</td>        
+        <td>${p.modified_date}</td>        
+
         
         <td><button type="button"  id="order-btn1" data-product-id=${p.id}>Cancel</button>
     </tr>`;
