@@ -11,40 +11,50 @@
 
 <body>
     <!-- <a href="order.html"> MY ORDERS</a> -->
-    <br> Filter:
-    <form>
-        <label>Brand Name</label>
-        <br />
-        <input type="checkbox" name="brandNames" value="Samsung"> Samsung
-        <br />
-        <input type="checkbox" name="brandNames" value="Apple"> Apple
-        <br />
-        <input type="checkbox" name="brandNames" value="Nokia"> Nokia
-        <br />
-        <input type="checkbox" name="brandNames" value="POCO"> POCO
-        <br />
-        <button id="searchBtn"> Search </button>
-    </form>
-    <h3>List Products</h3>
+    <h3 class="text-center">List Products</h3>
+    <div class="row">
+        <div class="col-2">
+            Filter:
+            <form>
+                <label>Brand Name</label>
+                <br />
+                <input type="checkbox" name="brandNames" value="Samsung"> Samsung
+                <br />
+                <input type="checkbox" name="brandNames" value="Apple"> Apple
+                <br />
+                <input type="checkbox" name="brandNames" value="Nokia"> Nokia
+                <br />
+                <input type="checkbox" name="brandNames" value="POCO"> POCO
+                <br />
+                <button id="searchBtn"> Search </button>
+            </form>
+        </div>
+        <div class="col-9">
+            <div id="errorMessage" style="color:red"></div>
+            <table border="1" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sno</th>
+                        <th>Product Name</th>
+                        <th>Brand Name</th>
+                        <th>RAM</th>
+                        <th>Rating</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="products-tbl">
 
-    <div id="errorMessage" style="color:red"></div>
-    <table border="1" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Sno</th>
-                <th>Product Name</th>
-                <th>Brand Name</th>
-                <th>RAM</th>
-                <th>Rating</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody id="products-tbl">
-
-        </tbody>
+                </tbody>
 
 
-    </table>
+            </table>
+
+        </div>
+    </div>
+    <br>
+
+
     <script>
 
         //Display the product details  in a table
