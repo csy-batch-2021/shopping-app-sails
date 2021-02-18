@@ -78,7 +78,7 @@
         <td>${p.modified_date}</td> <td>`
 
                     if (p.status == "ORDERED") {
-                        temp += `<button type = "button"  id = "order-btn1" data - product - id=${p.id} > Delivered</button >`
+                        temp += `<button type = "button"  id = "order-btn1" data-product-id=${p.id}> Delivered</button >`
                         temp += ` <button type="button" onclick="orderCancel(${p.id})" id="cancel-btn1" data-cancel-id=${p.id}>Cancel</button>`
                     }
 
