@@ -29,8 +29,13 @@ module.exports.security = {
 
   cors: {
     allRoutes: true,
-    allowOrigins: "*",
-    allowCredentials: false,
+    allowOrigins: [
+      "https://shopping-app-rest-api.herokuapp.com",
+      "https://shoppingapp-sails.herokuapp.com",
+      "http://localhost:1337",
+    ],
+    allowRequestMethods: "GET,PUT,POST,OPTIONS,HEAD,PATCH",
+    allowCredentials: true,
   },
 
   /****************************************************************************

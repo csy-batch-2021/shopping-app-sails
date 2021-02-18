@@ -27,7 +27,9 @@ module.exports.routes = {
   "get /myorders": { view: "pages/myorders" },
 
   //REST API
-  //"post /api/login": { controller: "UserController", action: "login" },
+  //"get /api/login": { controller: "UserController", action: "login" },
+  "post /api/login": { action: "user/login" },
+  "get /api/register": { action: "user/register" },
 
   /***************************************************************************
    *                                                                          *
