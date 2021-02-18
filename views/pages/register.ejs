@@ -62,10 +62,10 @@
             axios.post(url, userDetails).then(response => {
                 let registerData = response;
                 console.log(registerData);
-                document.querySelector("#message").innerHTML = "User Added Successfully";
+                // document.querySelector("#message").innerHTML = "User Added Successfully";
                 toastr.success("Successfully LoggedIn");
                 if (registerData) {
-                   console.log(registerData,"ss")
+                    console.log(registerData, "ss")
                     window.location.href = "login";
                 }
                 else {
@@ -74,7 +74,7 @@
             }).catch(err => {
                 let error = err.response.data.message;
                 console.error(error);
-                document.querySelector("#message").innerHTML = error;
+                // document.querySelector("#message").innerHTML = error;
                 toastr.error(error);
             })
 

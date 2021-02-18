@@ -1,22 +1,22 @@
-<h1>Create New Products</h1>
+<h1>Create New Product</h1>
 <div id="message"></div>
 <br>
 <form>
-    <label class="name">Name</label>
-    <input type="user_name" id="name" placeholder="Enter Name" required>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Enter Name" required>
     <br>
     <br>
-    <label class="email">Brand Name</label>
-    <input type="email" id="brandName" placeholder="Enter Brand Name" required>
+    <label for="brandName">Brand Name</label>
+    <input type="text" id="brandName" placeholder="Enter Brand Name" required>
     <br>
     <br>
-    <label>Ram</label>
-    <input type="text" id="ram" placeholder="Enter Ram" required>
+    <label for="ram">Ram</label>
+    <input type="number" id="ram" placeholder="Enter Ram" required min=1>
     <br>
     <br>
 
-    <label>Price</label>
-    <input type="text" id="price" placeholder="Enter Price" required>
+    <label for="price">Price(Rs)</label>
+    <input type="number" id="price" placeholder="Enter Price" required min=1>
     <br>
     <br>
     <br>
@@ -39,10 +39,11 @@
         axios.post(url, productDetails).then(response => {
             let registerData = response;
             console.log(registerData);
-            document.querySelector("#message").innerHTML = "User Added Successfully";
+            document.querySelector("#message").innerHTML = "Product Added Successfully";
+            toastr.success("Product Added Successfully");
             // if (registerData) {
 
-                window.location.href = "allproducts";
+            window.location.href = "allproducts";
             // }
             // else {
             //     window.location.href = "register";
@@ -50,6 +51,8 @@
         }).catch(err => {
             let error = err.response.data.message;
             console.error(error);
+            toastr.error(error);
+
             document.querySelector("#message").innerHTML = error;
         })
 
