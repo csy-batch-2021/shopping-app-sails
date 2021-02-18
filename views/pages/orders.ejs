@@ -75,12 +75,14 @@
         <td>Rs${p.total_amount}</td>
         <td>${p.status}</td>
         <td>${p.created_date}</td>        
-        <td>${p.modified_date}</td> 
-        
-        <td><button type="button"  id="order-btn1" data-product-id=${p.id}>Delivered</button>
-            <td><button type="button" onclick="orderCancel(${p.id})"  id="cancel-btn1" data-cancel-id=${p.id}>Cancel</button>
+        <td>${p.modified_date}</td> <td>`
 
-    </tr>`;
+                    if (p.status == "ORDERED") {
+                        temp += `<button type = "button"  id = "order-btn1" data - product - id=${p.id} > Delivered</button >`
+                        temp += ` <button type="button" onclick="orderCancel(${p.id})" id="cancel-btn1" data-cancel-id=${p.id}>Cancel</button>`
+                    }
+
+                    `</td ></tr >`;
 
                     content += temp;
                     i++;
