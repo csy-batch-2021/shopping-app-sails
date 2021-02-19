@@ -12,6 +12,10 @@
 <body>
     <!-- <a href="order.html"> MY ORDERS</a> -->
     <h3 class="text-center">List Products</h3>
+    <div>
+        Wallat Balance:
+        <span id="Wallet"></span>
+    </div>
     <div class="row">
         <div class="col-2">
             Filter:
@@ -146,6 +150,20 @@
                 displayProducts(response.data);
             });
         }
+
+         function loadWalletBalance() {
+            let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let userId = { loggedInUserId: loggedInUser.id }
+            // console.log(userId, "ssss");
+            let url = "https://shopping-app-rest-api.herokuapp.com/api/walletBalance";
+            // let url = "http://localhost:3000/api/walletBalance";
+            axios.put(url, userId).then(response => {
+                let walletBalance = response.data.balance;
+                document.querySelector("#Wallet").innerHTML = walletBalance;
+            });
+        }
+
+        loadWalletBalance();
 
         function filterProducts(filterObj) {
 
