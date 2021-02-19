@@ -62,9 +62,9 @@
         function login(email, password, role) {
             let user = { email: email, password: password, role: role };
 
-            let url = "https://shopping-app-rest-api.herokuapp.com/api/userLogin";
+            // let url = "https://shopping-app-rest-api.herokuapp.com/api/userLogin";
             //let url = "/api/login"
-            // let url = "http://localhost:3000/api/userLogin";
+            let url = "http://localhost:3000/api/userLogin";
 
             axios.post(url, user).then(response => {
                 let userData = response.data;
@@ -78,7 +78,6 @@
                 else {
                     window.location.href = "products";
                 }
-
             }).catch(err => {
                 let error = err.response.data.message;
                 console.error(error);
