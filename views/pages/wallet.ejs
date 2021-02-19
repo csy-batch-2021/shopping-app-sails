@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="node_modules/shoppingapp/ProductApi.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        text-align: center;
+    }
+
+    /* label.userId {
+        padding: 10px;
+    } */
+
+    /* div {
+        text-align: center;
+        margin-left: 20px;
+        color: red;
+    } */
+
+    /* body {
+        background-image: url("https://image.freepik.com/free-photo/shopping-cart-yellow-background-minimalism-style-shop-trolley-supermarket-sale-discount-shopaholism-concept-consumer-society-trend_80743-2181.jpg");
+    } */
+</style>
+
+<body>
+    <li>
+        <a href="userList">UserList</a>
+    </li>
+    <h1>Add Balance</h1>
+    <div id="message"></div>
+    <br>
+    <form id="form">
+        <label class="userId">UserId</label>
+        <input type="number" id="userId" placeholder="Enter UserId" required>
+        <br>
+        <br>
+        <label>Balance</label>
+        <input type="number" id="balance" placeholder="Enter Balance" required>
+        <br>
+        <br>
+        <button id="submitBtn"> ADD Amount </button>
+        <button onclick="reset()" value="Reset">Clear</button>
+    </form>
+
+    <script>
+
+
+        function addBals(userId, balance) {
+            let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let loggedInUserId = loggedInUser.id;
+            let bals = { loggedInUserId: loggedInUserId, userId: userId, balance: balance };
+            // let url = "https://shopping-app-rest-api.herokuapp.com/api/addBalance";
+            let url = "http://localhost:3000/api/addBalance";
+            axios.put(url, bals).then(response => {
+                console.log(response)
+                let nbal = response.data;
+                console.log(nbal);
+                toastr.success("Successfully Balance Add");
+
+            }).catch(err => {
+                console.log(err, "error message")
+                let error = err.response.data.message;
+                toastr.error(error);
+            });
+        }
+
+        function addBalance() {
+            let userId = document.querySelector("#userId").value;
+            let balance = document.querySelector("#balance").value;
+            addBals(userId, balance);
+        }
+
+        document.querySelector("#submitBtn").addEventListener('click', event => {
+            event.preventDefault();
+            addBalance();
+        })
+
+        function reset() {
+            document.getElementById("form").reset();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -38,7 +38,7 @@
     <h1>Login</h1>
     <div id="message"></div>
     <br>
-    <form>
+    <form id="form">
         <label class="email">Email</label>
         <input type="email" id="email" placeholder="Enter email" required>
         <br>
@@ -54,6 +54,7 @@
         <br>
         <br>
         <button id="submitBtn"> Submit </button>
+        <button onclick="reset()" value="Reset">Clear</button>
     </form>
 
     <script>
@@ -97,6 +98,10 @@
             event.preventDefault();
             loginSubmit();
         })
+
+        function reset() {
+            document.getElementById("form").reset();
+        }
 
     </script>
 </body>

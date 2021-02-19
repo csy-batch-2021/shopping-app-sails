@@ -34,7 +34,7 @@
     <h1>Create your Shopping Account</h1>
     <div id="message"></div>
     <br>
-    <form>
+    <form id="form">
         <label class="name">Name</label>
         <input type="user_name" id="user_name" placeholder="Enter Name" required>
         <br>
@@ -49,6 +49,7 @@
         <br>
         <br>
         <button id="submitBtn"> Register </button>
+        <button onclick="reset()" value="Reset">Clear</button>
     </form>
 
     <script>
@@ -89,6 +90,10 @@
             event.preventDefault();
             registerSubmit();
         })
+
+        function reset() {
+            document.getElementById("form").reset();
+        }
 
     </script>
 
