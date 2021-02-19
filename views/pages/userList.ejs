@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="node_modules/shoppingapp/ProductApi.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+
+    <h3>Users List</h3>
+
+    <table border="1" class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Wallet</th>
+            </tr>
+        </thead>
+        <tbody id="user-tbl">
+
+        </tbody>
+
+
+    </table>
+    <script>
+        function loadUsers() {
+
+            // let url = "http://localhost:3000/api/userLists";
+            let url = "https://shopping-app-rest-api.herokuapp.com/api/userLists";
+            axios.get(url).then(response => {
+                displayUsers(response.data);
+            });
+        }
+
+        function displayUsers(users) {
+
+            const tbody = document.querySelector("#user-tbl");
+            tbody.innerHTML = "";
+            let content = "";
+            let i = 1;
+
+            console.log("users", users.length);
+            if (users.length != 0) {
+                for (let u of users) {
+
+                    let temp = ` <tr>
+
+    <td>${u.user_id}</td>
+    <td>${u.user_name}</td>
+    <td>${u.email}</td>
+    <td>${u.role}</td>
+    <td>${u.balance}</td>
+    
+</tr>`;
+
+                    content += temp;
+                    i++;
+                }
+            }
+            else {
+                content = "No Records Found"
+            }
+            tbody.innerHTML = content;
+
+        }
+
+
+        loadUsers();
+
+
+    </script>
+</body>
+
+</html>
