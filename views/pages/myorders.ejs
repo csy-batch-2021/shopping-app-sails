@@ -30,6 +30,8 @@
 
 
                 <th>Action</th>
+                <th>Rating</th>
+
             </tr>
         </thead>
         <tbody id="order-tbl">
@@ -88,7 +90,8 @@
                     }
 
 
-                    temp = temp + `</td> </tr>`;
+                    temp = temp + `</td>`
+                    temp += ` <td><button type="button" onclick="ratingPrompt(${p.product_id})"  id="rating-btn1" data-product-id=${p.product_id}> Rating</button> </td> </tr>`;
 
                     content += temp;
                     i++;
@@ -156,6 +159,47 @@
             }
 
         }
+        function ratingPrompt(productId) {
+            // console.log("productId", productId);
+            var userAdjective = prompt("Please provide an Adjective");
+            var values = parseInt(userAdjective);
+            console.log("values", values);
+            if (values) {
+                if (values >= 1 && values <= 5) {
+                    // alert(values);
+                    let loggedInUser = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+                    let userId = loggedInUser.id;
+
+                    let ratingObjectValues = { userId: userId, productId: productId, rating: values }
+                    console.log("ratingObjectValues", ratingObjectValues);
+                    // let url = "http://localhost:3000/api/addProductRating";
+                    let url = "https://shopping-app-rest-api.herokuapp.com/api/addProductRating";
+
+
+                    axios.post(url, ratingObjectValues).then(response => {
+                        // productOrderAPI.orderProduct(orderObj).then(response => {
+                        console.log(response.data);
+                        toastr.success("Rating Added Successfully");
+                        loadProducts();
+                        // document.getElementById("errorMessage").innerHTML = response.data;
+                        // window.location.href = "orders.html";
+
+                    }).catch(err => {
+                        // console.error("Erroro", );   
+                        toastr.error(err.response.data.message);
+
+                        // document.getElementById("errorMessage").innerHTML = err.response.data.message;
+                    });
+
+                }
+                else {
+                    toastr.error("please Enter Valid Rating (1 to 5)");
+                }
+            } else {
+                toastr.error("please Enter Valid Rating (1 to 5)");
+            }
+        }
+
 
         loadProducts();
 
