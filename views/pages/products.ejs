@@ -18,7 +18,7 @@
             <form>
                 <label>Brand Name</label>
                 <br />
-                <input type="checkbox" name="brandNames" value="Samsung"> Samsung
+                <input type="checkbox" id="brandNames" name="brandNames" value="Samsung">
                 <br />
                 <input type="checkbox" name="brandNames" value="Apple"> Apple
                 <br />
@@ -64,10 +64,12 @@
             tbody.innerHTML = "";
             let content = "";
             let i = 1;
-
+            let brandName = [];
             console.log("products", products.length);
             if (products.length != 0) {
                 for (let p of products) {
+                    brandName.push(p.brand_name);
+
 
                     let temp = ` <tr>
     <td>${i}</td>
@@ -89,6 +91,7 @@
             // console.log(content);
             tbody.innerHTML = content;
 
+
             //Assign Listeners
             document.querySelectorAll("#order-btn1").forEach(element => {
                 let productId = parseInt(element.getAttribute("data-product-id"));
@@ -97,6 +100,9 @@
                     placeOrder(productId);
                 });
             });
+            document.querySelectorAll("#brandName").innerHTML = brandName;
+            console.log(brandName);
+
 
         }
 
@@ -111,18 +117,21 @@
             let orderObj = { productId: productId, qty: 1, userId: userId };
             console.log(orderObj);
             // const productOrderAPI = new ProductOrderAPI();
-            // let url = "http://localhost:3000/addOrder";
+            // let url = "http://localhost:3000/api/addOrder";
             let url = "https://shopping-app-rest-api.herokuapp.com/api/addOrder";
             axios.post(url, orderObj).then(response => {
                 // productOrderAPI.orderProduct(orderObj).then(response => {
                 console.log(response.data);
-                document.getElementById("errorMessage").innerHTML = response.data;
-                // window.location.href = "orders.html";
+                toastr.success("Product Added Successfully");
+
+                // document.getElementById("errorMessage").innerHTML = response.data;
+
+                window.location.href = "myorders";
 
             }).catch(err => {
                 // console.error("Erroro", );   
-
-                document.getElementById("errorMessage").innerHTML = err.response.data.message;
+                toastr.error(err.response.data.message);
+                // document.getElementById("errorMessage").innerHTML = err.response.data.message;
             });
         }
 
@@ -130,7 +139,7 @@
         function loadProducts() {
             // const productSearchAPI = new ProductSearchAPI();
             // let url = "https://shopping-app-rest-api.herokuapp.com/activeproducts";
-            // let url = "http://localhost:3000/activeproducts";
+            // let url = "http://localhost:3000/api/activeproducts";
             let url = "https://shopping-app-rest-api.herokuapp.com/api/activeproducts";
             axios.get(url).then(response => {
                 // console.table(response.data);
@@ -142,7 +151,7 @@
 
             console.log("filterObj", filterObj);
             // const productSearchAPI = new ProductSearchAPI();
-            // let url = "http://localhost:3000/searchProducts";
+            // let url = "http://localhost:3000/api/searchProducts";
             let url = "https://shopping-app-rest-api.herokuapp.com/api/searchProducts";
             // productSearchAPI.searchProducts(filterObj).then(response => {
             //     console.table(response);
